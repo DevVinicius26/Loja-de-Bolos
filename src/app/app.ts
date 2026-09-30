@@ -1,12 +1,21 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  standalone: true,
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
+  styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('loja-bolos');
+  constructor(private router: Router) {}
+
+  irParaBusca(event: Event) {
+    event.preventDefault();
+    const input = (document.getElementById('termoBusca') as HTMLInputElement).value;
+    if (input.trim()) {
+      this.router.navigate(['/busca'], { queryParams: { termo: input } });
+    }
+  }
 }

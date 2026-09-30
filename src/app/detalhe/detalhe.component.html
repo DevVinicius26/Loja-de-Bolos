@@ -1,0 +1,16 @@
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img [src]="imagemBolo" class="img-fluid rounded-4 shadow-sm object-fit-cover" style="height: 350px; width: 100%;" alt="Bolo">
+        </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold text-dark mb-3">{{ nomeBolo }}</h2>
+            <p class="text-secondary mb-4">Delicioso bolo caseiro preparado com ingredientes selecionados de alta qualidade, massa fofinha e recheio cremoso, perfeito para qualquer ocasião especial.</p>
+            <h4 class="text-success fw-bold mb-4">R$ {{ precoBolo.toFixed(2).replace('.', ',') }}</h4>
+            <div class="d-flex gap-3">
+                <a routerLink="/" class="btn btn-outline-secondary rounded-pill px-4">Voltar à Vitrine</a>
+                <button type="button" (click)="adicionarAoCarrinho()" class="btn btn-danger rounded-pill px-4">Adicionar à Cesta</button>
+            </div>
+        </div>
+    </div>
+</div>

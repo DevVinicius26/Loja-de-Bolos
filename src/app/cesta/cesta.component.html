@@ -1,0 +1,48 @@
+<div class="container mb-5">
+    <h2 class="mb-4">Cesta de Compras</h2>
+
+    <!-- Se houver itens na cesta -->
+    <div *ngIf="cartService.getItens().length > 0; else cestaVazia">
+        <div class="table-responsive shadow-sm rounded-4 overflow-hidden mb-4">
+            <table class="table align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="py-3 ps-4">Item</th>
+                        <th class="py-3 text-center">Qtd</th>
+                        <th class="py-3 text-end pe-4">Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartService.getItens()">
+                        <td class="ps-4 py-3">
+                            <div class="d-flex align-items-center">
+                                <img [src]="item.imagem" alt="" class="rounded-3 me-3 object-fit-cover" style="width: 50px; height: 50px;">
+                                <span class="fw-semibold text-dark">{{ item.nome }}</span>
+                            </div>
+                        </td>
+                        <td class="text-center">{{ item.qtd }}x</td>
+                        <td class="text-end pe-4 fw-bold text-success">R$ {{ (item.preco * item.qtd).toFixed(2).replace('.', ',') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end my-4">
+            <h4>Total: <span class="text-success">R$ {{ cartService.getTotal().toFixed(2).replace('.', ',') }}</span></h4>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <button type="button" (click)="limpar($event)" class="btn btn-outline-danger px-4 rounded-pill">Limpar Cesta</button>
+            <a routerLink="/login" class="btn btn-success btn-lg px-5 rounded-pill shadow-sm">Finalizar Compra</a>
+        </div>
+    </div>
+
+    <!-- Caso a cesta esteja vazia -->
+    <ng-template #cestaVazia>
+        <div class="text-center py-5 bg-light rounded-4 shadow-sm">
+            <h4 class="text-muted mb-3">A sua cesta está vazia 🛒</h4>
+            <p class="text-secondary mb-4">Explore a nossa vitrine e escolha deliciosos bolos caseiros!</p>
+            <a routerLink="/" class="btn btn-danger rounded-pill px-4 py-2">Ver Vitrine</a>
+        </div>
+    </ng-template>
+</div>
