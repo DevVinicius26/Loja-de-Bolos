@@ -15,7 +15,8 @@ export class App {
     event.preventDefault();
     const input = (document.getElementById('termoBusca') as HTMLInputElement).value;
     if (input.trim()) {
-      this.router.navigate(['/busca'], { queryParams: { termo: input } });
+      // Alterado de 'termo' para 'q' para corresponder ao componente de busca
+      this.router.navigate(['/busca'], { queryParams: { q: input } });
     }
   }
 }
